@@ -49,20 +49,17 @@ class HeatMapColorTip extends StatelessWidget {
   ///
   /// If [ColorMode.color], call [_heatmapListColor]
   /// If [ColorMode.opacity], call [_heatmapListOpacity]
-  List<Widget> _heatmapList() => colorMode == ColorMode.color
-      ? _heatmapListColor()
-      : _heatmapListOpacity();
+  List<Widget> _heatmapList() =>
+      colorMode == ColorMode.color ? _heatmapListColor() : _heatmapListOpacity();
 
   /// Evenly show every colors from lowest to highest.
   List<Widget> _heatmapListColor() {
     List<Widget> children = [];
-    SplayTreeMap sortedColorset =
-        SplayTreeMap.from(colorsets ?? {}, (a, b) => a > b ? 1 : -1);
+    SplayTreeMap sortedColorset = SplayTreeMap.from(colorsets ?? {}, (a, b) => a > b ? 1 : -1);
 
     for (int i = 0; i < (containerCount ?? _defaultLength); i++) {
-      children.add(_tipContainer(sortedColorset.values.elementAt(
-          (sortedColorset.length / (containerCount ?? _defaultLength) * i)
-              .floor())));
+      children.add(_tipContainer(sortedColorset.values
+          .elementAt((sortedColorset.length / (containerCount ?? _defaultLength) * i).floor())));
     }
 
     return children;
@@ -73,9 +70,9 @@ class HeatMapColorTip extends StatelessWidget {
     List<Widget> children = [];
 
     for (int i = 0; i < (containerCount ?? _defaultLength); i++) {
-      children.add(_tipContainer(colorsets?.values.first
-              .withOpacity(i / (containerCount ?? _defaultLength)) ??
-          Colors.white));
+      children.add(_tipContainer(
+          colorsets?.values.first.withOpacity(i / (containerCount ?? _defaultLength)) ??
+              Colors.white));
     }
     return children;
   }

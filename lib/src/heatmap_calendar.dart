@@ -47,6 +47,11 @@ class HeatMapCalendar extends StatefulWidget {
   /// Default value is false.
   final bool? flexible;
 
+  /// Set block alignment to linear mode if value is true.
+  ///
+  /// Default value is false.
+  final bool? isLinearMode;
+
   /// The margin value for every block.
   final EdgeInsets? margin;
 
@@ -102,6 +107,7 @@ class HeatMapCalendar extends StatefulWidget {
     this.weekTextColor,
     this.borderRadius,
     this.flexible = false,
+    this.isLinearMode = false,
     this.margin,
     this.onClick,
     this.onMonthChange,
@@ -125,15 +131,13 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     setState(() {
       // Set _currentDate value to first day of initialized date or
       // today's month if widget.initDate is null.
-      _currentDate =
-          DateUtil.startDayOfMonth(widget.initDate ?? DateTime.now());
+      _currentDate = DateUtil.startDayOfMonth(widget.initDate ?? DateTime.now());
     });
   }
 
   void changeMonth(int direction) {
     setState(() {
-      _currentDate =
-          DateUtil.changeMonth(_currentDate ?? DateTime.now(), direction);
+      _currentDate = DateUtil.changeMonth(_currentDate ?? DateTime.now(), direction);
     });
     if (widget.onMonthChange != null) widget.onMonthChange!(_currentDate!);
   }
@@ -154,9 +158,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
 
         // Text which shows the current year and month
         Text(
-          DateUtil.MONTH_LABEL[_currentDate?.month ?? 0] +
-              ' ' +
-              (_currentDate?.year).toString(),
+          DateUtil.MONTH_LABEL[_currentDate?.month ?? 0] + ' ' + (_currentDate?.year).toString(),
           style: TextStyle(
             fontSize: widget.monthFontSize ?? 12,
           ),
@@ -183,9 +185,8 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             widget.flexible ?? false,
             false,
             Container(
-              margin: EdgeInsets.only(
-                  left: widget.margin?.left ?? 2,
-                  right: widget.margin?.right ?? 2),
+              margin:
+                  EdgeInsets.only(left: widget.margin?.left ?? 2, right: widget.margin?.right ?? 2),
               width: widget.size ?? 42,
               alignment: Alignment.center,
               child: Text(
