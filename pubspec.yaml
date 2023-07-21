@@ -1,4 +1,4 @@
-name: flutter_heatmap_calendar
+name: flutter_heatmap_calendar_linear
 description: Flutter heatmap calendar inspired by github contribution chart which includes traditional mode / calendar mode.
 version: 1.0.5
 homepage: https://github.com/devappmin/flutter_heatmap_calendar
