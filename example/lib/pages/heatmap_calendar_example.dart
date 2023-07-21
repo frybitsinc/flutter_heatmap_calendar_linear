@@ -61,17 +61,10 @@ class _HeatMapCalendarExample extends State<HeatMapCalendarExample> {
                 child: HeatMapCalendar(
                   flexible: true,
                   datasets: heatMapDatasets,
-                  colorMode:
-                      isOpacityMode ? ColorMode.opacity : ColorMode.color,
-                  colorsets: const {
-                    1: Colors.red,
-                    3: Colors.orange,
-                    5: Colors.yellow,
-                    7: Colors.green,
-                    9: Colors.blue,
-                    11: Colors.indigo,
-                    13: Colors.purple,
-                  },
+                  colorMode: isOpacityMode ? ColorMode.opacity : ColorMode.color,
+                  colorsets: isOpacityMode
+                      ? HeatMapColor.opacityModeColorSets
+                      : HeatMapColor.colorModeColorSets,
                 ),
               ),
             ),
